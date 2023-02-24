@@ -1,0 +1,48 @@
+<form method="POST" action="index.php" class="w-50 p-3 ms-auto me-auto" id="car-form">
+        <div class="mb-3">
+            <label class="form-label" for="brand">Марка:</label>
+            <select class="form-select" id="brand" name="brand" required>
+                <option selected disabled hidden></option>
+                <option>Audi</option>
+                <option>Renault</option>
+                <option>BMW</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="model">Модель:</label>
+            <select class="form-select" id="model" name="model" disabled required>
+                <option selected disabled hidden></option>
+                <!-- Динамически вставляются модели в зависимости от марки -->
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="spare">Типы запчастей:</label>
+            <select class="form-select" id="spare" name="spare" required>
+                <option selected disabled hidden></option>
+                <option>Бампер передний</option>
+                <option>Бампер задний</option>
+                <option>Крышка капота</option>
+                <option>Дверь водительская</option>
+                <option>Дверь пассажирская</option>
+                <option>Дверь задняя левая</option>
+                <option>Крыло правое</option>
+                <option>Фара противотуманная</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="name">Имя:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="phone">Телефон:</label>
+            <input type="tel" class="form-control" id="phone" name="phone" required>
+        </div>
+
+        <div class="text-center">
+            <input type="submit" class="btn btn-primary" id="send" name="send" value="Отправить на почту">
+        </div>
+</form>
