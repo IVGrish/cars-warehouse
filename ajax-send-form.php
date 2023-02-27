@@ -37,22 +37,23 @@ function send_to_database(array $input): string
 
     $insert_stmt = $db->prepare("INSERT INTO cars ( `brand`, `model`, `spare`, `name`, `phone` ) "
         . " VALUES ( :brand, :model, :spare, :name, :phone )");
-
-    $insert_stmt->execute($input);
-
-
-    $info = $insert_stmt->errorInfo();
-    if ($info[0] == '00000') {
-        $result = 'success';
-    } else {
-        $result = 'error';
+    try {
+        $insert_stmt->execute($input);
+    } catch (PDOException) {
+        $info = $insert_stmt->errorInfo();
+    } finally {
+        if (!isset($info)) {
+            $result = 'success';
+        } else {
+            $result = 'error';
+        }
+        return $result;
     }
-    return $result;
 }
 
 function send_message(array $input): string
 {
-    $to = '=?UTF-8?B?' . base64_encode('Иван') . '?= <ivan06042000@gmail.com>';
+    $to = '=?UTF-8?B?' . base64_encode('Иван') . '?= <root@localhost.com>';
 
     $subject = '=?UTF-8?B?' . base64_encode('Ремонт машины') . '?=';
 
@@ -81,8 +82,8 @@ function send_message(array $input): string
 
     $headers  = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-    $headers .= 'To: <ivan0604200@gmail.com>' . "\r\n";
-    $headers .= 'From: <Admin@localhost>' . "\r\n";
+    $headers .= 'To: <root@localhost.com>' . "\r\n";
+    $headers .= 'From: <root@localhost.com>' . "\r\n";
     $headers .= 'X-Mailer: POST' . "\r\n";
     $headers .= 'X-Priority: 1' . "\r\n";
     $headers .= 'Content-Transfer-Encoding: base64' . "\r\n";
